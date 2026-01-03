@@ -32,8 +32,13 @@ After the MCP Server is started and integrated into your editor, prompts like _L
 
 Below are two example screenshots showing how the MCP server can be used from an assistant UI:
 
-![Ask example](img/mcp-ask.png)
-![Chat example](img/mcp-chat.png)
+![Ask example](img/mcp-ask.png) 
+<br>Asking for confirmation if the MCP server can be used.
+<br>
+
+![Chat example](img/mcp-chat.png) 
+<br>Creating a new local PostgreSQL database and verifying that the database is actually created.
+<br>
 
 __Note:__ If GitHub Copilot does not pick up the MCP server automatically, add the MCP server to the prompt context by adding the keyword `#local-postgres` to your prompt (the name used in `.vscode/mcp.json`).
 
