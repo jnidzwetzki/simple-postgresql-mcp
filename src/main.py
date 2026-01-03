@@ -6,7 +6,7 @@ mcp = FastMCP("Local PostgreSQL database manager", json_response=True)
 
 @mcp.tool()
 def create_db(database: str) -> str:
-    """Create a new local PostgresSQL database"""
+    """Create a new local PostgreSQL database"""
     try:
         subprocess.check_output(
             ["createdb", database],
@@ -22,7 +22,7 @@ def create_db(database: str) -> str:
 
 @mcp.tool()
 def drop_db(database: str) -> str:
-    """Drop a PostgresSQL database"""
+    """Drop a PostgreSQL database"""
     try:
         subprocess.check_output(
             ["dropdb", database],
@@ -39,7 +39,7 @@ def drop_db(database: str) -> str:
 #@mcp.resource("postgres://localhost/databases")
 @mcp.tool()
 def list_databases() -> str:
-    """List all locally existing Postgres databases"""
+    """List all locally existing PostgreSQL databases"""
     try:
         out = subprocess.check_output(
             ["psql", "postgres", "-At", "-c", "SELECT datname FROM pg_database;"],
