@@ -36,7 +36,6 @@ def drop_db(database: str) -> str:
     except Exception as e:
         return f"Error dropping database: {str(e)}"
 
-#@mcp.resource("postgres://localhost/databases")
 @mcp.tool()
 def list_databases() -> str:
     """List all locally existing PostgreSQL databases"""
@@ -54,6 +53,24 @@ def list_databases() -> str:
     except Exception as e:
         return f"Error listing databases: {str(e)}"
 
+@mcp.tool()
+def execute_sql(database: str, sql: str, timeout: int = 30) -> str:
+    """Execute a SQL statement on the given local PostgreSQL database.
+
+    Returns command output on success or the error output on failure.
+    """
+    try:
+        out = subprocess.check_output(
+            ["psql", database, "-v", "ON_ERROR_STOP=1", "-c", sql],
+            stderr=subprocess.STDOUT,
+            text=True,
+            timeout=timeout,
+        )
+        return out.strip() if out.strip() else "Command executed successfully."
+    except subprocess.CalledProcessError as e:
+        return f"Error executing SQL: {e.output.strip()}"
+    except Exception as e:
+        return f"Error executing SQL: {str(e)}"
 
 # Run with streamable HTTP transport
 if __name__ == "__main__":
