@@ -2,7 +2,7 @@ from mcp.server.fastmcp import FastMCP
 import subprocess
 
 # Initialize the MCP server
-mcp = FastMCP("Local PostgreSQL database manager", json_response=True)
+mcp = FastMCP("PostgreSQL MCP Server", json_response=True)
 
 @mcp.tool()
 def create_db(database: str) -> str:
